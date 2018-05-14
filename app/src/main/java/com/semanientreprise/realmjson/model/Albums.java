@@ -6,8 +6,8 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class Fruits extends RealmObject {
+public class Albums extends RealmObject {
     String Name;
     String Image;
-    String Price;
+    String Year;
 }

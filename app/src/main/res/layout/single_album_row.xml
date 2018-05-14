@@ -1,35 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/fruit_img"
+        android:id="@+id/album_img"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
         android:src="@android:drawable/alert_dark_frame" />
 
     <TextView
-        android:id="@+id/fruit_name"
+        android:id="@+id/album_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="10dp"
-        android:layout_toRightOf="@id/fruit_img"
+        android:layout_toRightOf="@id/album_img"
         android:text="Fruit Name"
         android:textSize="16sp" />
 
     <TextView
-        android:id="@+id/fruit_price"
+        android:id="@+id/album_year"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="5dp"
-        android:layout_below="@id/fruit_name"
-        android:layout_toRightOf="@id/fruit_img"
+        android:layout_below="@id/album_name"
+        android:layout_toRightOf="@id/album_img"
         android:text="Fruit Price"
         android:textSize="15sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#000"
+        android:layout_below="@+id/album_img"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        />
 
 
 </RelativeLayout>
