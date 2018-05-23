@@ -4,7 +4,9 @@ import io.realm.RealmObject;
 import io.realm.RealmResults;
 import io.realm.annotations.LinkingObjects;
 
-public class Group extends RealmObject {
+public class InverseGroup extends RealmObject {
     public String name;
     public int number_of_students;
+    @LinkingObjects("groups")
+    public final RealmResults<TeacherInverse> teachers = null;
 }

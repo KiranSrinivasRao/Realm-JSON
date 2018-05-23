@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         Realm.init(this);
     }
 
-    @OnClick({R.id.oneToOne, R.id.oneToMany})
+    @OnClick({R.id.oneToOne, R.id.oneToMany, R.id.manyToMany,R.id.inverseRelationship})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.oneToOne:
@@ -30,7 +30,22 @@ public class MainActivity extends AppCompatActivity {
             case R.id.oneToMany:
                 showOneToManyFragment();
                 break;
+            case R.id.manyToMany:
+                showManyToManyFragment();
+                break;
+            case R.id.inverseRelationship:
+                showInverseFragment();
+                break;
         }
+    }
+    private void showInverseFragment() {
+        InverseRelationship inverse = new InverseRelationship();
+        showFragment(inverse);
+    }
+
+    private void showManyToManyFragment() {
+        ManyToMany manyToMany = new ManyToMany();
+        showFragment(manyToMany);
     }
 
     private void showOneToManyFragment() {
