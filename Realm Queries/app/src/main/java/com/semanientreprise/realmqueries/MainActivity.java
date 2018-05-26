@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
             public void execute(Realm realm) {
                 InputStream inputStream = getResources().openRawResource(R.raw.persons);
                 try {
-                    realm.createAllFromJson(Person.class,inputStream);
+                    realm.createAllFromJson(Person.class, inputStream);
                 } catch (IOException e) {
                     if (realm.isInTransaction())
                         realm.cancelTransaction();
@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    @OnClick({R.id.single_query, R.id.double_string_query, R.id.multiple_string_query})
+    @OnClick({R.id.single_query, R.id.double_string_query, R.id.multiple_string_query,R.id.pattern_string_query})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.single_query:
@@ -58,7 +58,15 @@ public class MainActivity extends AppCompatActivity {
             case R.id.multiple_string_query:
                 showMultipleStringFragment();
                 break;
+            case R.id.pattern_string_query:
+                showPatternQueryFragment();
+                break;
         }
+    }
+
+    private void showPatternQueryFragment() {
+        PatternMatching patternMatching = new PatternMatching();
+        showFragment(patternMatching);
     }
 
     private void showMultipleStringFragment() {
@@ -80,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction ft = fragmentManager.beginTransaction();
 
-        ft.replace(R.id.mainLayout,fragment).addToBackStack(fragment.getTag());
+        ft.replace(R.id.mainLayout, fragment).addToBackStack(fragment.getTag());
         ft.commit();
     }
 }

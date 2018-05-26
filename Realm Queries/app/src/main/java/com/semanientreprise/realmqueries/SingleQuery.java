@@ -54,6 +54,7 @@ public class SingleQuery extends Fragment {
                     .contains("name", string_queryName, Case.INSENSITIVE)
                     .findAll();
 
+            toDisplay.append("contains() Predicate\n\n");
             toDisplay.append("There are - "+result.size()+" Persons with a name like that\n\n");
 
             int i = 0;
@@ -63,15 +64,43 @@ public class SingleQuery extends Fragment {
                 i++;
             }
 
+
             result = realm.where(Person.class)
                     .beginsWith("name",string_queryName,Case.SENSITIVE)
                     .findAll();
 
+            toDisplay.append("beginsWith() Predicate\n\n");
             toDisplay.append("There are - "+result.size()+" Persons that their name starts with - "+string_queryName+"\n\n");
 
             i = 0;
             while(i < result.size()){
-                toDisplay.append(result.get(i).name+" with phone number : "+result.get(i).phone_number+" email : "+result.get(i).email+" and Address :"+result.get(i).address+"\n\n\n");
+                toDisplay.append(result.get(i).name+" with phone number : "+result.get(i).phone_number+" email : "+result.get(i).email+" and Address : "+result.get(i).address+"\n\n\n");
+                i++;
+            }
+
+            result = realm.where(Person.class)
+                    .endsWith("name",string_queryName,Case.SENSITIVE)
+                    .findAll();
+
+            toDisplay.append("endsWith() Predicate\n\n");
+            toDisplay.append("There are - "+result.size()+" Persons that their name ends with - "+string_queryName+"\n\n");
+
+            i = 0;
+            while(i < result.size()){
+                toDisplay.append(result.get(i).name+" with phone number : "+result.get(i).phone_number+" email : "+result.get(i).email+" and Address : "+result.get(i).address+"\n\n\n");
+                i++;
+            }
+
+            toDisplay.append("equalTo() Predicate\n\n");
+            result = realm.where(Person.class)
+                    .equalTo("name",string_queryName,Case.INSENSITIVE)
+                    .findAll();
+
+            toDisplay.append("There are - "+result.size()+" Persons match the name - "+string_queryName+"\n\n");
+
+            i = 0;
+            while(i < result.size()){
+                toDisplay.append(result.get(i).name+" with phone number : "+result.get(i).phone_number+" email : "+result.get(i).email+" and Address : "+result.get(i).address+"\n\n\n");
                 i++;
             }
         }

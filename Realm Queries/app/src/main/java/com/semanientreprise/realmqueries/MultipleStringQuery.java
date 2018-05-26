@@ -19,7 +19,6 @@ import io.realm.Case;
 import io.realm.Realm;
 import io.realm.RealmResults;
 
-
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -66,7 +65,7 @@ public class MultipleStringQuery extends Fragment {
             int i = 0;
 
             while(i < result.size()){
-                toDisplay.append(result.get(i).name+" with phone number : "+result.get(i).phone_number+" email : "+result.get(i).email+" and Address :"+result.get(i).address+"\n\n\n");
+                toDisplay.append(result.get(i).name+" with phone number : "+result.get(i).phone_number+" email : "+result.get(i).email+" and Address : "+result.get(i).address+"\n\n\n");
                 i++;
             }
 
