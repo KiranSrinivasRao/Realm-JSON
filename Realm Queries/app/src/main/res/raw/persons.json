@@ -1,26 +1,72 @@
 [
   {
-    "name":"Ebenezer Edet",
-    "address":"Garki Abuja",
-    "phone_number":242424,
-    "email":"seginebenezer72@yahoo.com"
+    "name": "Ebenezer Edet",
+    "address": "Garki Abuja",
+    "phone_number": 242424,
+    "email": "seginebenezer72@yahoo.com",
+    "age": 30
   },
   {
     "name":"Smith Williams",
     "address":"Wuse Abuja",
     "phone_number":123456,
-    "email":"smithwilliams4real@gmail.com"
+    "email":"smithwilliams4real@gmail.com",
+    "age": 25
   },
   {
     "name":"Mark John",
     "address":"Gwagwalada Abuja",
     "phone_number":890234,
-    "email":"markjonah123@gmail.com"
+    "email":"markjonah123@gmail.com",
+    "age": 20
   },
   {
     "name":"Edet Lucas",
     "address":"Gwarinpa Abuja",
     "phone_number":345678,
-    "email":"lucasmoondy@yahoo.com"
+    "email":"lucasmoondy@yahoo.com",
+    "age": 15
+  },
+  {
+    "name":"Edet Lucas",
+    "address":"Gwarinpa Abuja",
+    "phone_number":345678,
+    "email":"lucasmoondy@yahoo.com",
+    "age": 70
+  },
+  {
+    "name":"Edet Lucas",
+    "address":"Gwarinpa Abuja",
+    "phone_number":345678,
+    "email":"lucasmoondy@yahoo.com",
+    "age": 50
+  },
+  {
+    "name":"Edet Lucas",
+    "address":"Gwarinpa Abuja",
+    "phone_number":345678,
+    "email":"lucasmoondy@yahoo.com",
+    "age":10
+  },
+  {
+    "name":"Edet Lucas",
+    "address":"Gwarinpa Abuja",
+    "phone_number":345678,
+    "email":"lucasmoondy@yahoo.com",
+    "age":45
+  },
+  {
+    "name":"Edet Lucas",
+    "address":"Gwarinpa Abuja",
+    "phone_number":345678,
+    "email":"lucasmoondy@yahoo.com",
+    "age":75
+  },
+  {
+    "name":"Edet Lucas",
+    "address":"Gwarinpa Abuja",
+    "phone_number":345678,
+    "email":"lucasmoondy@yahoo.com",
+    "age":20
   }
 ]

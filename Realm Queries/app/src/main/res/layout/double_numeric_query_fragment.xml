@@ -5,35 +5,35 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFF"
-    tools:context=".SingleQuery">
+    tools:context=".DoubleNumericQuery">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
+        android:layout_height="match_parent">
         <EditText
+            android:layout_marginTop="30dp"
             android:id="@+id/query_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:hint="Enter Name" />
+            android:inputType="number"
+            android:hint="Enter First Age" />
+
+        <EditText
+            android:layout_below="@+id/query_name"
+            android:id="@+id/query_name_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:hint="Enter Second Age" />
 
         <Button
             android:id="@+id/go_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/query_name"
-            android:layout_gravity="center_horizontal"
+            android:layout_below="@+id/query_name_2"
+            android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
             android:text="GO" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:text="Result"
-            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/result"
@@ -45,7 +45,6 @@
             android:text="Result Will appear Here"
             android:textColor="#000"
             android:textSize="18sp" />
-
-    </LinearLayout>
+    </RelativeLayout>
 
 </ScrollView>

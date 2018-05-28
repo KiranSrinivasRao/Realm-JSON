@@ -64,7 +64,6 @@ public class SingleQuery extends Fragment {
                 i++;
             }
 
-
             result = realm.where(Person.class)
                     .beginsWith("name",string_queryName,Case.SENSITIVE)
                     .findAll();

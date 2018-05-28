@@ -12,4 +12,5 @@ public class Person extends RealmObject {
     String address;
     String email;
     int phone_number;
+    int age;
 }

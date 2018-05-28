@@ -39,5 +39,17 @@
             android:layout_height="wrap_content"
             android:text="Pattern Matching Query" />
 
+        <Button
+            android:id="@+id/numeric_string_query"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Numeric Query" />
+
+        <Button
+            android:id="@+id/double_numeric_string_query"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Double Numeric Query" />
+
     </LinearLayout>
 </RelativeLayout>

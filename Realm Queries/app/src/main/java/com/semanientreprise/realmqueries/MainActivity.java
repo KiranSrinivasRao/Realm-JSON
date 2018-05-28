@@ -46,7 +46,8 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    @OnClick({R.id.single_query, R.id.double_string_query, R.id.multiple_string_query,R.id.pattern_string_query})
+    @OnClick({R.id.single_query, R.id.double_string_query, R.id.multiple_string_query,R.id.pattern_string_query
+    ,R.id.numeric_string_query,R.id.double_numeric_string_query})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.single_query:
@@ -61,7 +62,23 @@ public class MainActivity extends AppCompatActivity {
             case R.id.pattern_string_query:
                 showPatternQueryFragment();
                 break;
+            case R.id.numeric_string_query:
+                showNumericQueryFragment();
+                break;
+            case R.id.double_numeric_string_query:
+                showDoubleNumericQueryFragment();
+                break;
         }
+    }
+
+    private void showDoubleNumericQueryFragment() {
+        DoubleNumericQuery doubleNumericQuery = new DoubleNumericQuery();
+        showFragment(doubleNumericQuery);
+    }
+
+    private void showNumericQueryFragment() {
+        NumericQuery numericQuery = new NumericQuery();
+        showFragment(numericQuery);
     }
 
     private void showPatternQueryFragment() {
