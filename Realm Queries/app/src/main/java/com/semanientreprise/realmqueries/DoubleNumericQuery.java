@@ -63,7 +63,18 @@ public class DoubleNumericQuery extends Fragment {
             toDisplay.append("between() Predicate\n\n");
             toDisplay.append("There are - " + result.size() + " Persons between " + age + " and "+age2+"\n\n");
 
+            result = result.sort("age");
+            toDisplay.append("ASCENDING ORDER BY AGE\n\n");
             int i = 0;
+
+            while (i < result.size()) {
+                toDisplay.append(result.get(i).name + " with phone number : " + result.get(i).phone_number + " email : " + result.get(i).email + " Address :" + result.get(i).address + " and age : "+ result.get(i).age +"\n\n\n");
+                i++;
+            }
+
+            result = result.sort("age",io.realm.Sort.DESCENDING);
+            toDisplay.append("DESCENDING ORDER BY AGE\n\n");
+            i = 0;
 
             while (i < result.size()) {
                 toDisplay.append(result.get(i).name + " with phone number : " + result.get(i).phone_number + " email : " + result.get(i).email + " Address :" + result.get(i).address + " and age : "+ result.get(i).age +"\n\n\n");
@@ -71,10 +82,8 @@ public class DoubleNumericQuery extends Fragment {
             }
             resultTv.setText(toDisplay.toString());
         }
-
         else
             showToast("No Field can be Empty and First Age must be greater than Second Age");
-
     }
 
     private void showToast(String message) {

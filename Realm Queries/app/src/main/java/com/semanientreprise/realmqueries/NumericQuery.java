@@ -23,10 +23,15 @@ import io.realm.RealmResults;
  */
 public class NumericQuery extends Fragment {
 
-    @BindView(R.id.query_name)
-    EditText queryName;
+    @BindView(R.id.query_age)
+    EditText queryAge;
     @BindView(R.id.result)
     TextView resultTv;
+    @BindView(R.id.query_email)
+    EditText queryEmail;
+    @BindView(R.id.query_address)
+    EditText queryAddress;
+
     Unbinder unbinder;
 
     private Realm realm;
@@ -45,17 +50,25 @@ public class NumericQuery extends Fragment {
 
     @OnClick(R.id.go_btn)
     public void onViewClicked() {
-        String age = queryName.getText().toString();
+        String age = queryAge.getText().toString();
+        String email = queryEmail.getText().toString();
+        String address = queryAddress.getText().toString();
 
         StringBuilder toDisplay = new StringBuilder();
 
-        if (!age.isEmpty()) {
+        if (!(age.isEmpty() && email.isEmpty() && address.isEmpty())) {
             RealmResults<Person> result = realm.where(Person.class)
                     .greaterThan("age", Integer.valueOf(age))
+                    .beginGroup()
+                        .contains("email",email)
+                        .and()
+                        .contains("address",address)
+                    .endGroup()
                     .findAll();
 
-            toDisplay.append("greaterThan() Predicate\n\n");
-            toDisplay.append("There are - " + result.size() + " Persons older than " + age + "\n\n");
+            toDisplay.append("beginGroup() - endGroup() Predicate\n\n");
+            toDisplay.append("There are - " + result.size() + " Persons older than " + age +
+            "that their emails contains "+email+" and their address contains "+address+"\n\n");
 
             int i = 0;
 
@@ -64,6 +77,30 @@ public class NumericQuery extends Fragment {
                 i++;
             }
 
+            result = realm.where(Person.class)
+                    .greaterThan("age", Integer.valueOf(age))
+                    .not()
+                    .beginGroup()
+                        .contains("email",email)
+                        .and()
+                        .contains("address",address)
+                    .endGroup()
+                    .findAll();
+
+            toDisplay.append("not() Predicate\n\n");
+            toDisplay.append("There are - " + result.size() + " Persons older than " + age +
+            "that their emails doesn't contain "+email+" and their address doesn't contain "+address+"\n\n");
+
+            i = 0;
+
+            while (i < result.size()) {
+                toDisplay.append(result.get(i).name + " with phone number : " + result.get(i).phone_number + " email : " + result.get(i).email + " Address :" + result.get(i).address + " and age : "+ result.get(i).age +"\n\n\n");
+                i++;
+            }
+
+            /*
+             * uncomment this section of code to use the lessThan,greaterThanOrEqualTo and lessThanOrEqualTo predicates
+             *
             result = realm.where(Person.class)
                     .lessThan("age",Integer.valueOf(age))
                     .findAll();
@@ -101,11 +138,11 @@ public class NumericQuery extends Fragment {
             while(i < result.size()){
                 toDisplay.append(result.get(i).name+" with phone number : "+result.get(i).phone_number+" email : "+result.get(i).email+" and Address : "+result.get(i).address+ " and age : "+ result.get(i).age +"\n\n\n");
                 i++;
-            }
+            }*/
             resultTv.setText(toDisplay.toString());
         }
         else
-            showToast("Age Field cannot be empty");
+            showToast("No Field can be empty");
     }
 
     private void showToast(String message) {
