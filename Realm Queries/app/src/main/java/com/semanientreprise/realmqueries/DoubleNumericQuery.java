@@ -16,6 +16,7 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 import io.realm.Realm;
 import io.realm.RealmResults;
+import io.realm.Sort;
 
 
 /**
@@ -58,12 +59,13 @@ public class DoubleNumericQuery extends Fragment {
 
             RealmResults<Person> result = realm.where(Person.class)
                     .between("age", Integer.valueOf(age),Integer.valueOf(age2))
+                    .distinct("name")
                     .findAll();
 
-            toDisplay.append("between() Predicate\n\n");
+            toDisplay.append("between() and distinct() Predicate\n\n");
             toDisplay.append("There are - " + result.size() + " Persons between " + age + " and "+age2+"\n\n");
 
-            result = result.sort("age");
+            result = result.sort("age", Sort.ASCENDING);
             toDisplay.append("ASCENDING ORDER BY AGE\n\n");
             int i = 0;
 
@@ -72,14 +74,18 @@ public class DoubleNumericQuery extends Fragment {
                 i++;
             }
 
-            result = result.sort("age",io.realm.Sort.DESCENDING);
+            /*
+             *uncomment for sort() in descending order
+             *
+
+            result = result.sort("age",Sort.DESCENDING);
             toDisplay.append("DESCENDING ORDER BY AGE\n\n");
             i = 0;
 
             while (i < result.size()) {
                 toDisplay.append(result.get(i).name + " with phone number : " + result.get(i).phone_number + " email : " + result.get(i).email + " Address :" + result.get(i).address + " and age : "+ result.get(i).age +"\n\n\n");
                 i++;
-            }
+            }*/
             resultTv.setText(toDisplay.toString());
         }
         else

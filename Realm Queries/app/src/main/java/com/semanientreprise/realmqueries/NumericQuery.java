@@ -51,12 +51,45 @@ public class NumericQuery extends Fragment {
     @OnClick(R.id.go_btn)
     public void onViewClicked() {
         String age = queryAge.getText().toString();
-        String email = queryEmail.getText().toString();
-        String address = queryAddress.getText().toString();
+        String specificAge = queryEmail.getText().toString();
+        //uncomment the below lines to use the beginGroup() - endGroup() and also the not() predicates
+        //String email = queryEmail.getText().toString();
+        // String address = queryAddress.getText().toString();
 
         StringBuilder toDisplay = new StringBuilder();
 
-        if (!(age.isEmpty() && email.isEmpty() && address.isEmpty())) {
+        //also uncomment this if statement and comment the one below it for
+        // the beginGroup() - endGroup() and also the not() predicates
+        //   if (!(age.isEmpty() && email.isEmpty() && address.isEmpty())) {
+        if (!(age.isEmpty() && specificAge.isEmpty())){
+
+            RealmResults<Person> result = realm.where(Person.class)
+                    .lessThan("age",Integer.valueOf(age))
+                    .findAll();
+
+            toDisplay.append("lessThan() Predicate\n\n");
+            toDisplay.append("There are - " + result.size() + " Persons younger than " + age + "\n\n");
+
+            toDisplay.append("These are the objects matching the lessThan() predicate");
+
+            int i = 0;
+            while (i < result.size()) {
+                toDisplay.append(result.get(i).name + " with phone number : " + result.get(i).phone_number + " email : " + result.get(i).email + " Address :" + result.get(i).address + " and age : "+ result.get(i).age +"\n\n\n");
+                i++;
+            }
+
+            toDisplay.append("Query Chain Result\n\n");
+            Person singlePerson = result.where().equalTo("age",Integer.valueOf(specificAge)).findFirst();
+            if(!(singlePerson == null)){
+                toDisplay.append("This is the object returned after query chaining\n\n");
+                toDisplay.append(singlePerson.name + " with phone number : " + singlePerson.phone_number + " email : " + singlePerson.email + " Address :" + singlePerson.address + " and age : "+ singlePerson.age +"\n\n\n");
+            }
+            else
+                toDisplay.append("No Person in our result set has an age of "+specificAge);
+
+            /*
+             *uncomment to use the beginGroup() - endGroup() and the not() predicates
+             *
             RealmResults<Person> result = realm.where(Person.class)
                     .greaterThan("age", Integer.valueOf(age))
                     .beginGroup()
@@ -96,19 +129,19 @@ public class NumericQuery extends Fragment {
             while (i < result.size()) {
                 toDisplay.append(result.get(i).name + " with phone number : " + result.get(i).phone_number + " email : " + result.get(i).email + " Address :" + result.get(i).address + " and age : "+ result.get(i).age +"\n\n\n");
                 i++;
-            }
+            }*/
 
             /*
              * uncomment this section of code to use the lessThan,greaterThanOrEqualTo and lessThanOrEqualTo predicates
              *
             result = realm.where(Person.class)
-                    .lessThan("age",Integer.valueOf(age))
-                    .findAll();
+                                        .lessThan("age",Integer.valueOf(age))
+                                        .findAll();
 
             toDisplay.append("lessThan() Predicate\n\n");
             toDisplay.append("There are - " + result.size() + " Persons younger than " + age + "\n\n");
 
-            i = 0;
+            int i = 0;
             while(i < result.size()){
                 toDisplay.append(result.get(i).name+" with phone number : "+result.get(i).phone_number+" email : "+result.get(i).email+" and Address : "+result.get(i).address+ " and age : "+ result.get(i).age +"\n\n\n");
                 i++;
@@ -142,7 +175,7 @@ public class NumericQuery extends Fragment {
             resultTv.setText(toDisplay.toString());
         }
         else
-            showToast("No Field can be empty");
+            showToast("No Field can't be empty");
     }
 
     private void showToast(String message) {
